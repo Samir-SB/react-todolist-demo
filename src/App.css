@@ -26,11 +26,19 @@
   font-size: small;
   font-weight: bold;
   border-radius: 8px;
-  letter-spacing: .8px
+  letter-spacing: .8px;
+  cursor: pointer;
 }
 
 .btn-danger {
   color: #fff;
   background-color: rgb(204, 99, 99);
   border-color: rgb(172, 83, 83);
+}
+.pointer{
+  cursor: pointer;
+}
+.completed{
+  color: #8a8b8b;
+  text-decoration: 3px line-through rgba(239, 136, 243, 0.568);
 }

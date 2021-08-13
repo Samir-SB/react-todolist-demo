@@ -1,25 +1,34 @@
-import { useState } from 'react'
-import AddItem from './AddItem'
-import Item from './Item'
+import { useState } from 'react';
+import AddItem from './AddItem';
+import Item from './Item';
 export default function List() {
   const initialItems = [
-    {id:1, title:'item one'},{id:2, title:'item two'} , {id: 3, title: 'item three'}]
+    { id: 1, title: 'item one', completed: true },
+    { id: 2, title: 'item two', completed: false },
+    { id: 3, title: 'item three', completed: false },
+  ];
 
-  const [items, setItems] = useState(initialItems)
+  const [items, setItems] = useState(initialItems);
 
   //event handlers
   const removeItem = (id) => {
-    setItems(items.filter(item => item.id !== id))
-  }
-return (
+    setItems(items.filter((item) => item.id !== id));
+  };
+
+  const updateItem = (newItem) => {
+    setItems(items.map((item) => (item.id !== newItem.id ? item : newItem)));
+  };
+  return (
     <div>
       <AddItem />
       <hr />
       <ul>
-        {items.map((item) =>
-        <li key={item.id}><Item item={item} deleteItem={removeItem}/></li>
-        )}
+        {items.map((item) => (
+          <li key={item.id}>
+            <Item item={item} deleteItem={removeItem} updateItem={updateItem} />
+          </li>
+        ))}
       </ul>
     </div>
-  )
+  );
 }
