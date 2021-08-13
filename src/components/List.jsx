@@ -1,11 +1,17 @@
 import AddItem from './AddItem'
 import Item from './Item'
 export default function List() {
-  return (
+  const items = ['item one', 'item two', 'item three']
+
+return (
     <div>
       <AddItem />
       <hr />
-      <Item />
+      <ul>
+        {items.map((item, index) =>
+        <li key={index}><Item item={item}/></li>
+        )}
+      </ul>
     </div>
   )
 }

@@ -1,7 +1,7 @@
-export default function Item() {
+export default function Item({item}) {
   return (
     <div>
-      <p>this is item</p>
+      <p>{item}</p>
     </div>
   )
 }
