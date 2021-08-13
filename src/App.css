@@ -71,6 +71,10 @@ li:not(:last-of-type) {
   background-color: steelblue;
   border-color: rgb(50, 96, 134);
 }
+.btn-success {
+  background-color: rgb(92, 201, 156);
+  border-color: rgb(54, 111, 116);
+}
 .pointer {
   cursor: pointer;
 }
