@@ -3,42 +3,81 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+ul {
+  list-style: none;
+}
+h1 {
+  margin-top: 2rem;
+  color: steelblue;
+}
+input[type='text'] {
+  border-radius: 8px;
+  width: 200px;
+  padding: 0.3rem 0.5rem;
+  font-size: 1.2rem;
+  color: darkslategray;
+  font-weight: bold;
+  border: 2px solid lightgray;
+}
+hr {
+  height: 2px;
+  background-color: #ccc;
+  border: none;
+}
+
+li:not(:last-of-type) {
+  border-bottom: 1px solid #ccc;
+}
 .App {
   text-align: center;
 }
 
-
-
-.d-flex{
+.d-flex {
   display: flex;
-
 }
-.justify-center{
+.justify-center {
   justify-content: center;
 }
-.center{
+.center {
   justify-content: center;
   align-items: center;
 }
-.btn{
-  margin: .5rem;
-  padding: .3rem .5rem;
+.card {
+  padding: 0.5rem;
+  max-width: 600px;
+  margin: 1rem auto;
+  box-shadow: 4px 4px 8px #00000038;
+}
+.add-item {
+  padding: 0.3rem;
+}
+.btn {
+  margin: 0.5rem;
+  padding: 0.3rem 0.5rem;
   font-size: small;
   font-weight: bold;
   border-radius: 8px;
-  letter-spacing: .8px;
+  letter-spacing: 0.8px;
   cursor: pointer;
+  color: #fff;
 }
 
 .btn-danger {
-  color: #fff;
   background-color: rgb(204, 99, 99);
   border-color: rgb(172, 83, 83);
 }
-.pointer{
+.btn-primary {
+  background-color: steelblue;
+  border-color: rgb(50, 96, 134);
+}
+.pointer {
   cursor: pointer;
 }
-.completed{
+.completed {
   color: #8a8b8b;
   text-decoration: 3px line-through rgba(239, 136, 243, 0.568);
+}
+.btn:disabled {
+  opacity: 0.5;
 }

@@ -23,16 +23,20 @@ export default function List() {
   };
 
   return (
-    <div>
+    <>
       <AddItem addItem={addItem} />
       <hr />
       <ul>
-        {items.map((item) => (
-          <li key={item.id}>
-            <Item item={item} deleteItem={removeItem} updateItem={updateItem} />
-          </li>
-        ))}
+        {items.length > 0 ? (
+          items.map((item) => (
+            <li key={item.id}>
+              <Item item={item} deleteItem={removeItem} updateItem={updateItem} />
+            </li>
+          ))
+        ) : (
+          <p>There are no items to display!</p>
+        )}
       </ul>
-    </div>
+    </>
   );
 }
