@@ -18,9 +18,13 @@ export default function List() {
   const updateItem = (newItem) => {
     setItems(items.map((item) => (item.id !== newItem.id ? item : newItem)));
   };
+  const addItem = (item) => {
+    setItems([...items, item]);
+  };
+
   return (
     <div>
-      <AddItem />
+      <AddItem addItem={addItem} />
       <hr />
       <ul>
         {items.map((item) => (
