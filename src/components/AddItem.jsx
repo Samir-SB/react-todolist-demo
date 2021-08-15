@@ -7,12 +7,12 @@ const initialItem = {
   completed: false,
 };
 export default function AddItem() {
-  const { addItem } = useItems();
+  const { dispatch } = useItems();
   const [title, setTitle] = useState('');
 
   const handleOnClick = () => {
     setTitle('');
-    addItem({ ...initialItem, title });
+    dispatch({ type: 'addItem', payload: { ...initialItem, title } });
   };
   return (
     <div>
