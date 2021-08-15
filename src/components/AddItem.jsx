@@ -1,11 +1,13 @@
 import { useState } from 'react';
+import { useItems } from '../context/ItemsContext';
 
-export default function AddItem({ addItem }) {
-  const initialItem = {
-    id: Math.floor(Math.random() * 10000),
-    title: '',
-    completed: false,
-  };
+const initialItem = {
+  id: Math.floor(Math.random() * 10000),
+  title: '',
+  completed: false,
+};
+export default function AddItem() {
+  const { addItem } = useItems();
   const [title, setTitle] = useState('');
 
   const handleOnClick = () => {
