@@ -13,5 +13,18 @@ export function useItems() {
 
 export function ItemsProvider({ children }) {
   const [items, setItems] = useState(initialItems);
-  return <ItemsContext.Provider value={{ items, setItems }}>{children}</ItemsContext.Provider>;
+
+  //event handlers
+  const removeItem = (id) => {
+    setItems(items.filter((item) => item.id !== id));
+  };
+
+  const updateItem = (newItem) => {
+    setItems(items.map((item) => (item.id !== newItem.id ? item : newItem)));
+  };
+  const addItem = (item) => {
+    setItems([...items, item]);
+  };
+
+  return <ItemsContext.Provider value={{ items, removeItem, updateItem, addItem }}>{children}</ItemsContext.Provider>;
 }

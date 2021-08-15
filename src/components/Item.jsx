@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useItems } from '../context/ItemsContext';
 
-export default function Item({ item, deleteItem, updateItem }) {
+export default function Item({ item }) {
+  const { updateItem, removeItem } = useItems();
   const [editable, setEditable] = useState(false);
   const { id, title, completed } = item;
 
@@ -22,7 +24,7 @@ export default function Item({ item, deleteItem, updateItem }) {
       <button className={`btn btn-${editable ? 'success' : 'primary'}`} onClick={() => setEditable(!editable)}>
         {editable ? 'Save' : 'Edit'}
       </button>
-      <button className='btn btn-danger' onClick={() => deleteItem(id)}>
+      <button className='btn btn-danger' onClick={() => removeItem(id)}>
         delete
       </button>
     </div>
