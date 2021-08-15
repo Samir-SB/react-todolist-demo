@@ -1,14 +1,9 @@
-import { useState } from 'react';
+import { useItems, useSetItems } from '../context/ItemsContext';
 import AddItem from './AddItem';
 import Item from './Item';
 export default function List() {
-  const initialItems = [
-    { id: 1, title: 'item one', completed: true },
-    { id: 2, title: 'item two', completed: false },
-    { id: 3, title: 'item three', completed: false },
-  ];
-
-  const [items, setItems] = useState(initialItems);
+  const items = useItems();
+  const setItems = useSetItems();
 
   //event handlers
   const removeItem = (id) => {
