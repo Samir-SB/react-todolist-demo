@@ -1,9 +1,8 @@
-import { useItems, useSetItems } from '../context/ItemsContext';
+import { useItems } from '../context/ItemsContext';
 import AddItem from './AddItem';
 import Item from './Item';
 export default function List() {
-  const items = useItems();
-  const setItems = useSetItems();
+  const { items, setItems } = useItems();
 
   //event handlers
   const removeItem = (id) => {
