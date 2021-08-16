@@ -14,5 +14,9 @@ export function useItems() {
 
 export function ItemsProvider({ children }) {
   const [items, dispatch] = useReducer(reducerItems, initialItems);
-  return <ItemsContext.Provider value={{ items, dispatch }}>{children}</ItemsContext.Provider>;
+  return (
+    <ItemsContext.Provider value={{ items, dispatch }}>
+      {children}
+    </ItemsContext.Provider>
+  );
 }

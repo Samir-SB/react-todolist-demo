@@ -7,10 +7,16 @@ export default function Item({ item }) {
   const { id, title, completed } = item;
 
   const updateTitle = (e) => {
-    dispatch({ type: 'updateItem', payload: { ...item, title: e.target.value } });
+    dispatch({
+      type: 'updateItem',
+      payload: { ...item, title: e.target.value },
+    });
   };
   const toggleCompleted = () => {
-    dispatch({ type: 'updateItem', payload: { ...item, completed: !completed } });
+    dispatch({
+      type: 'updateItem',
+      payload: { ...item, completed: !completed },
+    });
   };
   const removeItem = () => {
     dispatch({ type: 'removeItem', payload: id });
@@ -22,11 +28,19 @@ export default function Item({ item }) {
         <input type='text' value={title} onChange={updateTitle} />
       ) : (
         <label className={`pointer ${completed ? 'completed' : ''}`}>
-          <input type='checkbox' defaultChecked={completed} hidden={true} onChange={toggleCompleted} />
+          <input
+            type='checkbox'
+            defaultChecked={completed}
+            hidden={true}
+            onChange={toggleCompleted}
+          />
           {id} - {title}
         </label>
       )}
-      <button className={`btn btn-${editable ? 'success' : 'primary'}`} onClick={() => setEditable(!editable)}>
+      <button
+        className={`btn btn-${editable ? 'success' : 'primary'}`}
+        onClick={() => setEditable(!editable)}
+      >
         {editable ? 'Save' : 'Edit'}
       </button>
       <button className='btn btn-danger' onClick={removeItem}>
