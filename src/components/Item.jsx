@@ -5,12 +5,16 @@ export default function Item({ item }) {
   const { dispatch } = useItems();
   const [editable, setEditable] = useState(false);
   const { id, title, completed } = item;
+  const [inputValue, setInputValue] = useState(title);
 
-  const updateTitle = (e) => {
-    dispatch({
-      type: 'updateItem',
-      payload: { ...item, title: e.target.value },
-    });
+  const editItem = (e) => {
+    if (editable) {
+      dispatch({
+        type: 'updateItem',
+        payload: { ...item, title: inputValue },
+      });
+    }
+    setEditable(!editable);
   };
   const toggleCompleted = () => {
     dispatch({
@@ -25,7 +29,11 @@ export default function Item({ item }) {
   return (
     <div className='d-flex center'>
       {editable ? (
-        <input type='text' value={title} onChange={updateTitle} />
+        <input
+          type='text'
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
       ) : (
         <label className={`pointer ${completed ? 'completed' : ''}`}>
           <input
@@ -39,7 +47,7 @@ export default function Item({ item }) {
       )}
       <button
         className={`btn btn-${editable ? 'success' : 'primary'}`}
-        onClick={() => setEditable(!editable)}
+        onClick={editItem}
       >
         {editable ? 'Save' : 'Edit'}
       </button>
