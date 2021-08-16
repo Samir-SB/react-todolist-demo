@@ -1,11 +1,7 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import reducerItems from '../reducers/reducerItems';
-const initialItems = [
-  { id: 1, title: 'item one', completed: true },
-  { id: 2, title: 'item two', completed: false },
-  { id: 3, title: 'item three', completed: false },
-];
 
+const LOCAL_STORAGE_KEY = 'todolistDemo.items';
 const ItemsContext = createContext();
 
 export function useItems() {
@@ -13,7 +9,16 @@ export function useItems() {
 }
 
 export function ItemsProvider({ children }) {
-  const [items, dispatch] = useReducer(reducerItems, initialItems);
+  const [items, dispatch] = useReducer(reducerItems, []);
+  useEffect(() => {
+    const ls = localStorage.getItem(LOCAL_STORAGE_KEY);
+    const payload = !!ls ? JSON.parse(ls) : [];
+    dispatch({ type: 'initItems', payload });
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items));
+  }, [items]);
   return (
     <ItemsContext.Provider value={{ items, dispatch }}>
       {children}
