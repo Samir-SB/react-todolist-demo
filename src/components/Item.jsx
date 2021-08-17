@@ -1,29 +1,23 @@
 import { useState } from 'react';
-import { useItems } from '../context/ItemsContext';
+import { useItems } from '../context/itemsContext';
 
 export default function Item({ item }) {
-  const { dispatch } = useItems();
+  const { removeItem, updateItem } = useItems();
   const [editable, setEditable] = useState(false);
   const { id, title, completed } = item;
   const [inputValue, setInputValue] = useState(title);
 
   const editItem = (e) => {
     if (editable) {
-      dispatch({
-        type: 'updateItem',
-        payload: { ...item, title: inputValue },
-      });
+      updateItem({ ...item, title: inputValue });
     }
     setEditable(!editable);
   };
   const toggleCompleted = () => {
-    dispatch({
-      type: 'updateItem',
-      payload: { ...item, completed: !completed },
-    });
+    updateItem({ ...item, completed: !completed });
   };
-  const removeItem = () => {
-    dispatch({ type: 'removeItem', payload: id });
+  const deleteItem = () => {
+    removeItem(id);
   };
 
   return (
@@ -51,7 +45,7 @@ export default function Item({ item }) {
       >
         {editable ? 'Save' : 'Edit'}
       </button>
-      <button className='btn btn-danger' onClick={removeItem}>
+      <button className='btn btn-danger' onClick={deleteItem}>
         delete
       </button>
     </div>

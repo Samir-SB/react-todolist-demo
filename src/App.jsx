@@ -1,6 +1,6 @@
 import './App.css';
 import List from './components/List';
-import { ItemsProvider } from './context/ItemsContext';
+import { ItemsProvider } from './context/ItemsProvider';
 import { fetchData } from './Utils/utils';
 
 function App() {
