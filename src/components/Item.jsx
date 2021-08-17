@@ -1,30 +1,51 @@
 import { useState } from 'react';
-import { useItems } from '../context/ItemsContext';
+import { useItems } from '../context/itemsContext';
 
 export default function Item({ item }) {
-  const { updateItem, removeItem } = useItems();
+  const { removeItem, updateItem } = useItems();
   const [editable, setEditable] = useState(false);
   const { id, title, completed } = item;
+  const [inputValue, setInputValue] = useState(title);
+
+  const editItem = (e) => {
+    if (editable) {
+      updateItem({ ...item, title: inputValue });
+    }
+    setEditable(!editable);
+  };
+  const toggleCompleted = () => {
+    updateItem({ ...item, completed: !completed });
+  };
+  const deleteItem = () => {
+    removeItem(id);
+  };
 
   return (
     <div className='d-flex center'>
       {editable ? (
-        <input type='text' value={title} onChange={(e) => updateItem({ ...item, title: e.target.value })} />
+        <input
+          type='text'
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
       ) : (
         <label className={`pointer ${completed ? 'completed' : ''}`}>
           <input
             type='checkbox'
             defaultChecked={completed}
             hidden={true}
-            onChange={() => updateItem({ ...item, completed: !completed })}
+            onChange={toggleCompleted}
           />
           {id} - {title}
         </label>
       )}
-      <button className={`btn btn-${editable ? 'success' : 'primary'}`} onClick={() => setEditable(!editable)}>
+      <button
+        className={`btn btn-${editable ? 'success' : 'primary'}`}
+        onClick={editItem}
+      >
         {editable ? 'Save' : 'Edit'}
       </button>
-      <button className='btn btn-danger' onClick={() => removeItem(id)}>
+      <button className='btn btn-danger' onClick={deleteItem}>
         delete
       </button>
     </div>
