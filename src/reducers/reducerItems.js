@@ -10,8 +10,6 @@ const reducerItems = (state, action = {}) => {
     case 'updateItem': // the paramater expected is newItem
       return state.map((item) => (item.id !== payload.id ? item : payload));
 
-    case 'initItems':
-      return payload;
     default:
       return state;
   }
